@@ -15,15 +15,28 @@ use Illuminate\Support\Facades\Route;
 */
 
 //Seria algo similar ao navigator do React Native, utilizar essas rotas embutidas no server. 
-Route::get('/', 'PrincipalController@principal');//Na versão 8 para setar controller vc chama um array contento o caminho para o diretório do controller;
+//Na versão 8 para setar controller vc chama um array contento o caminho para o diretório do controller;
+Route::get('/', 'PrincipalController@principal')->name('site.index');
 
-Route::get('/sobre-nos', 'SobreNosController@sobre');
+Route::get('/sobre-nos', 'SobreNosController@sobre')->name('site.sobrenos');
 
-Route::get('/contato', 'ContatoController@contato');
+Route::get('/contato', 'ContatoController@contato')->name('site.contato');
 
-Route::get('/contato/{nome}/{local}', function ($nome, $local) {
-    echo "We are here: " . $nome . " em " . $local;
+Route::get('/login', function() { return 'Login'; })->name('site.login');
+
+
+Route::prefix('/app')->group(function() {//agrupando rotas:
+    Route::get('/clientes', function() { return 'clientes'; })->name('app.clientes');
+    Route::get('/fornecedores', function() { return 'fornecedores'; })->name('app.fornecedores');
+    Route::get('/produtos', function() { return 'products'; })->name('app.produtos');
 });
-// Route::post('/testePOST' , function () { //Não deu certo esse teste rsrs
-//     return "Isso é uma rota post";
-// });
+
+Route::get('/rota1', function(){
+    echo "Rota 1";
+})->name('site.rota1');
+
+Route::get('/rota2', function(){
+    return redirect()->route('site.rota1');
+})->name('site.rota2');
+
+// Route::redirect('/rota2', 'rota1');
