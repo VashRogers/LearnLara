@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PrincipalController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,18 +15,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 //Seria algo similar ao navigator do React Native, utilizar essas rotas embutidas no server. 
-Route::get('/', function () {
-    // return view('welcome');
-    return "Hello World";
-});
+Route::get('/', 'PrincipalController@principal');
 
-Route::get('/sobre-nos', function() {
-    return "Aplicação para aprendizado de laravel 7";
-});
+Route::get('/sobre-nos', 'SobreNosController@sobre');
 
-Route::get('/Contato', function () {
-    return "Contato";
-});
+Route::get('/contato', 'ContatoController@contato');
 
 // Route::post('/testePOST' , function () { //Não deu certo esse teste rsrs
 //     return "Isso é uma rota post";
