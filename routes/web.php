@@ -21,6 +21,9 @@ Route::get('/sobre-nos', 'SobreNosController@sobre');
 
 Route::get('/contato', 'ContatoController@contato');
 
+Route::get('/contato/{nome}/{local}', function ($nome, $local) {
+    echo "We are here: " . $nome . " em " . $local;
+});
 // Route::post('/testePOST' , function () { //Não deu certo esse teste rsrs
 //     return "Isso é uma rota post";
 // });
