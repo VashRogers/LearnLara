@@ -23,8 +23,8 @@ Route::get('/sobre-nos', function() {
     return "Aplicação para aprendizado de laravel 7";
 });
 
-Route::get('/roger', function () {
-    return "Eu sou Roger, o cara que manda nisso tudo!";
+Route::get('/Contato', function () {
+    return "Contato";
 });
 
 // Route::post('/testePOST' , function () { //Não deu certo esse teste rsrs
