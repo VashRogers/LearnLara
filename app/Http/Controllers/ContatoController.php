@@ -8,6 +8,6 @@ class ContatoController extends Controller
 {
     //
     public function contato() {
-        echo "NIVALDO MARQUES";
+        return view('site.contato');
     }
 }

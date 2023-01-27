@@ -8,6 +8,6 @@ class PrincipalController extends Controller
 {
     //
     public function principal() {
-        echo "Olá MUNDO";
+        return view('site.principal');
     }
 }

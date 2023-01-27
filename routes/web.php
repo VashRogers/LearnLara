@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 //Seria algo similar ao navigator do React Native, utilizar essas rotas embutidas no server. 
-Route::get('/', 'PrincipalController@principal');
+Route::get('/', 'PrincipalController@principal');//Na versão 8 para setar controller vc chama um array contento o caminho para o diretório do controller;
 
 Route::get('/sobre-nos', 'SobreNosController@sobre');
 
