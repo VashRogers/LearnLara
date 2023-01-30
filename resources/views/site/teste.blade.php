@@ -9,6 +9,6 @@
 <body>
     
     <h3>View Teste</h3>
-    <p> Passando Parametros do Controller para View: x => {{ $x }}, y => {{ $y }} </p>
+    <p> Passando Parametros do Controller para View: x => {{ $p1 }}, y => {{ $p2 }} </p>
 </body>
 </html>
