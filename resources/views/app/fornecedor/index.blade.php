@@ -21,5 +21,23 @@
     @elseif(count($fornecedores) > 10)
         <h1>There's um monte de fornecedores</h1>
     @endif
+    <br>
+
+    @isset($fornecedores)
+        <h2>Fornecedores isset!</h2>        
+    @endisset
+
+    @empty($varVoid)
+        <h1>Variavel vazia</h1>
+    @endempty
+
+    @php
+        $var = null;
+        $auxVar = $var ?? "Nao existe";
+        echo $auxVar;
+    @endphp
+    
+    {{-- sintax blade possui todas as estruturas de dados(for, if else, switch case, foreach, etc...) do php normal imbutidas em uma view blade --}}
+    
 </body>
 </html>

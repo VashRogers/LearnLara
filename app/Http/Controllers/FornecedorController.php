@@ -9,7 +9,7 @@ class FornecedorController extends Controller
     
     public function index() {
         $fornecedores = ["Fornecedor 1"];
-
+        $voidVar = null;
         return view('app.fornecedor.index', compact('fornecedores'));
     }
 }
