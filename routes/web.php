@@ -31,6 +31,8 @@ Route::prefix('/app')->group(function() {//agrupando rotas:
     Route::get('/produtos', function() { return 'products'; })->name('app.produtos');
 });
 
+Route::get('/fornecedor', 'FornecedorController@fornecedor')->name('site.fornecedor');
+
 Route::get('/teste/{p1}/{p2}', 'TesteController@teste')->name('teste');
 
 Route::fallback(function() {
