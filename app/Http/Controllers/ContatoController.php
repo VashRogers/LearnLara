@@ -7,7 +7,7 @@ use App\SiteContato;
 class ContatoController extends Controller
 {
     //
-    public function contato(Request $request) {
+    public function contato() {
         // echo '<pre>';
         // print_r($request->all());
         // echo '</pre';
@@ -23,10 +23,15 @@ class ContatoController extends Controller
         // // print_r($contato->getAttributes());
         // $contato->save();
 
-        $contato = new SiteContato();
-        $contato->create($request->all());
+        // $contato = new SiteContato();
+        // $contato->create($request->all());
         // print_r($contato->getAttributes());
         // $contato->save();
         return view('site.contato', ['titulo'=>'Contact (teste)']);
+    }
+
+    public function salvar(Request $request) {
+        $contato = new SiteContato();
+        $contato->create($request->all());
     }
 }
