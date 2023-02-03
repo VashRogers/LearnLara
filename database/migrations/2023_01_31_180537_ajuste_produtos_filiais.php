@@ -59,7 +59,7 @@ class AjusteProdutosFiliais extends Migration
             $table->decimal('estoque_maximo', 8, 2);
         });
 
-        Schema::dropIfExists('produtos_filiais');
         Schema::dropIfExists('filiais');
+        Schema::dropIfExists('produtos_filiais');
     }
 }
