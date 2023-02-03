@@ -13,15 +13,17 @@ class SiteContatoSeeder extends Seeder
     public function run()
     {
         //
-        $contato = new SiteContato();
-        $contato->nome = 'Dudu';
-        $contato->telefone = '456484564';
-        $contato->email = 'duduomeuamor@gmail.com';
-        $contato->motivo_contato = 1;
-        $contato->mensagem = 'Dudu dudu o meu amor dudu';
+        // $contato = new SiteContato();
+        // $contato->nome = 'Dudu';
+        // $contato->telefone = '456484564';
+        // $contato->email = 'duduomeuamor@gmail.com';
+        // $contato->motivo_contato = 1;
+        // $contato->mensagem = 'Dudu dudu o meu amor dudu';
 
-        $contato->save();
+        // $contato->save();
+        //Usando factory para inserir dados fakes
 
+        factory(SiteContato::class, 100)->create();
         
     }
 }
