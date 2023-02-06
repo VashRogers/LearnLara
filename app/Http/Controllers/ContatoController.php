@@ -8,30 +8,23 @@ class ContatoController extends Controller
 {
     //
     public function contato() {
-        // echo '<pre>';
-        // print_r($request->all());
-        // echo '</pre';
-        // echo $request->input('mensagem');
 
-        // $contato = new SiteContato();
-        // $contato->nome = $request->input('nome');
-        // $contato->telefone = $request->input('telefone');
-        // $contato->email = $request->input('email');
-        // $contato->motivo_contato = $request->input('motivo_contato');
-        // $contato->mensagem = $request->input('mensagem');
-
-        // // print_r($contato->getAttributes());
-        // $contato->save();
-
-        // $contato = new SiteContato();
-        // $contato->create($request->all());
-        // print_r($contato->getAttributes());
-        // $contato->save();
-        return view('site.contato', ['titulo'=>'Contact (teste)']);
+        $motivo_contatos = [
+            '1' => 'Duvida',
+            '2' => 'Elogio',
+            '3' => 'Reclamação'
+        ];
+        return view('site.contato', ['titulo'=>'Contact (teste)', 'motivo_contatos' => $motivo_contatos]);
     }
 
     public function salvar(Request $request) {
-        $contato = new SiteContato();
-        $contato->create($request->all());
+        // SiteContato::create($request->all());
+        $request->validate([
+            'nome' => 'required|min:3|max:40',//qtd min e max de caracteres
+            'telefone'=>'required',
+            'email' => 'required',
+            'motivo_contato'=>'required',
+            'mensagem'=>'required|max:200'
+        ]);
     }
 }
