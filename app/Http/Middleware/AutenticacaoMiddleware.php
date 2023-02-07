@@ -13,12 +13,15 @@ class AutenticacaoMiddleware
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next)
+    public function handle($request, Closure $next, $metodo_autendicacao)
     {
         // return $next($request);
-        if(true){//só um teste
+        echo $metodo_autendicacao;
+        if(false){//só um teste
             return $next($request);
         }
-        return Response("Acesso negado, rota exige Autenticação");
+        else {
+            return Response("Acesso negado, rota exige Autenticação");
+        }
     }
 }
