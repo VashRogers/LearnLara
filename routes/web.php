@@ -17,7 +17,9 @@ use App\Http\Middleware\LogAcessoMiddleware;
 
 //Seria algo similar ao navigator do React Native, utilizar essas rotas embutidas no server. 
 //Na versão 8 para setar controller vc chama um array contento o caminho para o diretório do controller;
-Route::get('/', 'PrincipalController@principal')->middleware(LogAcessoMiddleware::class)->name('site.index');
+
+// Route::get('/', 'PrincipalController@principal')->middleware(LogAcessoMiddleware::class)->name('site.index');
+Route::get('/', 'PrincipalController@principal')->name('site.index');
 
 Route::get('/sobre-nos', 'SobreNosController@sobre')->name('site.sobrenos');
 
