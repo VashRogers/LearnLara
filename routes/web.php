@@ -31,11 +31,11 @@ Route::get('/login{erro?}', 'LoginController@index')->name('site.login');
 Route::post('/login', 'LoginController@autenticar')->name('site.login');
 
 Route::prefix('/app')->middleware('autenticacao:padrao')->group(function() {//agrupando rotas:
-    Route::get('/clientes', function() { return 'clientes'; })->name('app.clientes');
-    
-    // Route::get('/fornecedor', function() { return 'fornecedores'; })->name('app.fornecedores');
-    Route::get('/produtos', function() { return 'products'; })->name('app.produtos');
-    Route::get('/fornecedores', 'FornecedorController@index')->name('site.fornecedor');
+    Route::get('/home', 'HomeController@index')->name('app.home');
+    Route::get('/sair', 'LoginController@sair')->name('app.sair');
+    Route::get('/cliente', 'ClienteController@index')->name('app.cliente');
+    Route::get('/fornecedor', 'FornecedorController@index')->name('site.fornecedor');
+    Route::get('/produto', 'ProdutoController@index')->name('app.produto');
 });
 
 

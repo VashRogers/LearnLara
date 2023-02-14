@@ -60,4 +60,8 @@ class LoginController extends Controller
         
         // print_r($usuario_exists);
     }
+
+    public function sair() {
+        echo "Sair";
+    }
 }
