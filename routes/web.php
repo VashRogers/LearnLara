@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\PrincipalController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Middleware\LogAcessoMiddleware;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,8 +27,8 @@ Route::post('/contato', 'ContatoController@salvar')->name('site.contato');
 
 
 
-Route::get('/login', function() { return 'Login'; })->name('site.login');
-
+Route::get('/login{erro?}', 'LoginController@index')->name('site.login');
+Route::post('/login', 'LoginController@autenticar')->name('site.login');
 
 Route::prefix('/app')->middleware('autenticacao:padrao')->group(function() {//agrupando rotas:
     Route::get('/clientes', function() { return 'clientes'; })->name('app.clientes');
