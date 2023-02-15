@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Produto;
 use Illuminate\Http\Request;
+use App\Unidade;
 
 class ProdutoController extends Controller
 {
@@ -12,10 +13,12 @@ class ProdutoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
-        echo "Index";
+        $produtos = Produto::paginate(10);
+        
+        return view('app.produto.index', ['produtos' => $produtos, 'request' => $request->all()]);
     }
 
     /**
@@ -26,6 +29,9 @@ class ProdutoController extends Controller
     public function create()
     {
         //
+        $unidades = Unidade::all();
+
+        return view('app.produto.create', ['unidades' => $unidades]);
     }
 
     /**
