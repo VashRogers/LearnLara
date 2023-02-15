@@ -12,15 +12,23 @@ class FornecedorController extends Controller
         return view('app.fornecedor.index');
     }
 
-    public function listar() {
-        return view('app.fornecedor.listar');
+    public function listar(Request $request) {
+        
+        $fornecedores = Fornecedor::where('nome', 'like', '%'.$request->input('nome').'%')
+            ->where('site', 'like', '%'.$request->input('site').'%')
+            ->where('uf', 'like', '%'.$request->input('uf').'%')
+            ->where('email', 'like', '%'.$request->input('email').'%')
+            ->get();
+
+        
+        return view('app.fornecedor.listar', ['fornecedores' => $fornecedores]);
     }
 
     public function adicionar(Request $request ) {
         
         $stats_msg = '';
 
-        if($request->input('_token') != ''){
+        if($request->input('_token') != '' && $request->input('id') == ''){
             //cadastro do registro
             $regras = [ 
                 'nome'=>'required|min:3|max:40',
@@ -47,7 +55,29 @@ class FornecedorController extends Controller
             $stats_msg = 'Cadastro feito com sucesso';
         }
 
+        //edição de registro
+        if($request->input('_token') != '' && $request->input('id') != ''){
+            $fornecedor = Fornecedor::find($request->input('id'));
+
+            $update = $fornecedor->update($request->all());
+
+            if($update){
+                $stats_msg = "Update feito com success";
+            } else {
+                $stats_msg = "Erro no update";
+            }
+
+            return redirect()->route('app.fornecedor.adicionar', ['id'=> $request->input('id'), 'msg' => $stats_msg]);
+        }
+
         
         return view('app.fornecedor.adicionar', ['msg' => $stats_msg]);
+    }
+
+    public function editar($id, $msg = '') {
+        
+        $fornecedor = Fornecedor::find($id);
+
+        return view('app.fornecedor.adicionar', ['fornecedor'=>$fornecedor, 'msg'=>$msg]);
     }
 }
