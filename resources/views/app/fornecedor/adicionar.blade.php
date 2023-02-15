@@ -17,7 +17,7 @@
         </div>
         
         <div class="informacao-pagina">
-            <p style="color:red" >{{ $msg ?? '' }}</p>
+            <p style="color:green" >{{ $msg ?? '' }}</p>
             <div style="width: 30%; margin-left:auto; margin-right:auto " >
                 <form action="{{ route('app.fornecedor.adicionar') }}" method="post">
                     <input type="hidden" name="id" value="{{ $fornecedor->id ?? ''}}" >
