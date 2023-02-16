@@ -18,7 +18,7 @@
         
         <div class="informacao-pagina">
             <div style="width: 30%; margin-left:auto; margin-right:auto " >
-                <form action="" method="post">
+                <form action="{{ route('produto.store') }}" method="post">
                     <input type="hidden" name="id" value="" >
                     @csrf
                     
@@ -28,8 +28,9 @@
 
                     <input type="text" name="peso" value="" class="borda-preta" placeholder="Peso">
                     
-                    <select name="undidade_id">
-                        <option>--Selecione o tipo de unidade-</option>
+                    <select name="unidade_id">
+                            <option>--Selecione o tipo de unidade-</option>
+                        
                         @foreach ( $unidades as $unidade )
                             <option value="{{ $unidade->id }}">{{ $unidade->descricao }}</option>
 

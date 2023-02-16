@@ -42,7 +42,19 @@ class ProdutoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //Tava dando b.o pq tinha escrito unidade errado no value do select dentro da view(HAHAHAHAHAHAHAHAHAHAHHAHA CORINGUEI)
+        
+        $item = $request->all();
+
+        $produto = new Produto();
+        $produto->nome = $item['nome'];
+        $produto->descricao = $item['descricao'];
+        $produto->peso = $item['peso'];
+        $produto->unidade_id = $item['unidade_id'];
+        
+        $produto->save();
+        
+        return redirect()->route('produto.index');
     }
 
     /**
