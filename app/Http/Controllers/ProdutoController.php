@@ -44,6 +44,22 @@ class ProdutoController extends Controller
     {
         //Tava dando b.o pq tinha escrito unidade errado no value do select dentro da view(HAHAHAHAHAHAHAHAHAHAHHAHA CORINGUEI)
         
+        $regras = [
+            'nome'=>'required|min:3',
+            'descricao'=>'required',
+            'peso'=>'required|integer',
+            'unidade_id'=>'exists:unidades,id'
+        ];
+
+        $feedback = [
+            'required'=>'O campo precisa ser preenchido',
+            'nome.min'=>'O campo nome deve ter minimamente 3 caracteres',
+            'peso.integer'=>'O campo peso deve ser um numero inteiro',
+            'unidade_id.exists'=>'A unidade de medida não existe',
+        ];
+
+        $request->validate($regras, $feedback);
+
         $item = $request->all();
 
         $produto = new Produto();
@@ -65,7 +81,9 @@ class ProdutoController extends Controller
      */
     public function show(Produto $produto)
     {
-        //
+        
+
+        return view('app.produto.show', ['produto'=>$produto]);
     }
 
     /**
