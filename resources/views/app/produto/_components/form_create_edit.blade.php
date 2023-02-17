@@ -7,6 +7,14 @@
         @csrf
 @endif
         
+        <select name="fornecedor_id">
+                <option>--Selecione um Fornecedor</option>
+
+            @foreach ( $fornecedores as $key => $fornecedor )
+                <option value="{{ $fornecedor->id }}">{{ $fornecedor->nome }}</option>
+
+            @endforeach
+        </select>   
         <input type="text" name="nome" value="{{ $produto->nome ?? old('nome') }}" class="borda-preta" placeholder="Nome">
             {{ $errors->has('nome') ? $errors->first('nome') : '' }}
 
