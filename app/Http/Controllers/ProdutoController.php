@@ -67,11 +67,12 @@ class ProdutoController extends Controller
 
         $item = $request->all();
 
-        $produto = new Produto();
+        $produto = new Item();
         $produto->nome = $item['nome'];
         $produto->descricao = $item['descricao'];
         $produto->peso = $item['peso'];
         $produto->unidade_id = $item['unidade_id'];
+        $produto->fornecedor_id = $item['fornecedor_id'];
         
         $produto->save();
         
@@ -110,11 +111,29 @@ class ProdutoController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Produto  $produto
+     * @param  \App\Item  $produto
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Produto $produto)
+    public function update(Request $request, Item $produto)
     {
+        $regras = [
+            'nome'=>'required|min:3',
+            'descricao'=>'required',
+            'peso'=>'required|integer',
+            'unidade_id'=>'exists:unidades,id',
+            'fornecedor_id'=>'exists:fornecedores,id'
+        ];
+
+        $feedback = [
+            'required'=>'O campo precisa ser preenchido',
+            'nome.min'=>'O campo nome deve ter minimamente 3 caracteres',
+            'peso.integer'=>'O campo peso deve ser um numero inteiro',
+            'unidade_id.exists'=>'A unidade de medida não existe',
+            'fornecedor_id.exists'=>'O fornecedor deve ser relacionado!'
+        ];
+
+        $request->validate($regras, $feedback);
+
         $produto->update($request->all());
         return redirect()->route('produto.show', ['produto' => $produto->id]);
     }

@@ -14,7 +14,8 @@
                 <option value="{{ $fornecedor->id }}">{{ $fornecedor->nome }}</option>
 
             @endforeach
-        </select>   
+        </select>
+        <p style="color: rgb(255, 0, 0)">{{ $errors->has('unidade_id') ? $errors->first('unidade_id') : '' }}</p>
         <input type="text" name="nome" value="{{ $produto->nome ?? old('nome') }}" class="borda-preta" placeholder="Nome">
             {{ $errors->has('nome') ? $errors->first('nome') : '' }}
 
