@@ -7,8 +7,15 @@
         @csrf
 @endif
         
-        <input type="text" name="nome" value="{{ $pedido->nome ?? old('nome') }}" class="borda-preta" placeholder="Nome">
-            {{ $errors->has('nome') ? $errors->first('nome') : '' }}
+        <select name="cliente_id">
+            <option>--Selecione um Cliente</option>
+
+        @foreach ( $clientes as $key => $cliente )
+            <option value="{{ $cliente->id }}">{{ $cliente->nome }}</option>
+
+        @endforeach
+        </select>
+            {{ $errors->has('cliente_id') ? $errors->first('cliente_id') : '' }}
             
         <button type="submit" class="borda-preta">Cadastrar</button>
 

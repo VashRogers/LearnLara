@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Cliente;
 use App\Pedido;
 use Illuminate\Http\Request;
 
@@ -25,7 +26,9 @@ class PedidoController extends Controller
      */
     public function create()
     {
-        //
+        $clientes = Cliente::all();
+
+        return view('app.pedido.create', ['clientes'=>$clientes]);
     }
 
     /**
