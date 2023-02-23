@@ -1,0 +1,6 @@
+#!/bin/bash
+
+CONTAINER_POSTGRES=appgestao-db
+CONTAINER_NGINX=appgestao
+CONTAINER_PHP=appgestao-app
+PHP_VERSAO=7.4
