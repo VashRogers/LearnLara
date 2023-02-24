@@ -20,6 +20,7 @@
             <h4>Detalhes do Pedido: </h4>
             <p>Id do Pedido: {{ $pedido->id }}</p>
             <p>Cliente: {{ $pedido->cliente_id }}</p>
+
             <div style="width: 30%; margin-left:auto; margin-right:auto " >
                 <h4>Itens do Pedido: </h4>
                 
@@ -28,6 +29,7 @@
                         <tr>
                             <th>ID:</th>
                             <th>Nome do Produto:</th>
+                            <th>Data de inclusão do item no pedido</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -35,6 +37,7 @@
                             <tr>
                                 <td>{{ $produto->id }}</td>
                                 <td>{{ $produto->nome }}</td>
+                                <td>{{ $produto->pivot->created_at->format('d/m/Y') }}</td>
                             </tr>
                         @endforeach()
                     </tbody>
