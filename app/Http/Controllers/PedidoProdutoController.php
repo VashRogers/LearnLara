@@ -40,11 +40,13 @@ class PedidoProdutoController extends Controller
     public function store(Request $request, Pedido $pedido)
     {
         $rules =  [
-            'produto_id' => 'exists:produtos,id'
+            'produto_id' => 'exists:produtos,id',
+            'quantidade' => 'required'
         ];
 
         $feedback = [
-            'produto_id.exists' => 'O produto informado não exite'
+            'produto_id.exists' => 'O produto informado não exite',
+            'required' => 'O campo :attribute não foi informado'
         ];
 
         $request->validate($rules, $feedback);
@@ -53,6 +55,7 @@ class PedidoProdutoController extends Controller
 
         $pedido_produto->pedido_id = $pedido->id;
         $pedido_produto->produto_id = $request->get('produto_id');
+        $pedido_produto->quantidade = $request->get('quantidade');
 
         $pedido_produto->save();
 
