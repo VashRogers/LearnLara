@@ -61,7 +61,7 @@ Route::prefix('/app')->middleware('autenticacao:padrao')->group(function() {//ag
     
     Route::post('pedido-produto/store/{pedido}', 'PedidoProdutoController@store')->name('pedido-produto.store');
 
-
+    Route::delete('pedido-produto/destroy/{pedido}/{produto}', 'PedidoProdutoController@destroy')->name('pedido-produto.destroy');
 });
 
 
