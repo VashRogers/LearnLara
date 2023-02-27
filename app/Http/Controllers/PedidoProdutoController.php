@@ -51,13 +51,22 @@ class PedidoProdutoController extends Controller
 
         $request->validate($rules, $feedback);
 
-        $pedido_produto = new PedidoProduto();
+        // $pedido_produto = new PedidoProduto();
 
-        $pedido_produto->pedido_id = $pedido->id;
-        $pedido_produto->produto_id = $request->get('produto_id');
-        $pedido_produto->quantidade = $request->get('quantidade');
+        // $pedido_produto->pedido_id = $pedido->id;
+        // $pedido_produto->produto_id = $request->get('produto_id');
+        // $pedido_produto->quantidade = $request->get('quantidade');
 
-        $pedido_produto->save();
+        // $pedido_produto->save();
+        
+        // $pedido->produtos()->attach($request->get('produto_id'),
+        //     ['quantidade' => $request->get('quantidade')]
+        // );
+
+
+        $pedido->produtos()->attach([
+            $request->get('produto_id') => ['quantidade' => $request->get('quantidade')]
+        ]);//caso houvessem multiplos produtos para serem adicionados
 
         return redirect()->route('pedido-produto.create', ['pedido' => $pedido->id]);
     }
